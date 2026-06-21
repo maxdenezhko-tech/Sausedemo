@@ -6,17 +6,7 @@ import static org.testng.Assert.assertTrue;
 public class LoginTest extends BaseTest {
 
     @Test
-
     public void checkLogin() {
-
-        //1 открыть браузер
-        //2 зайти на сайт
-        //3 Ввести корректный логин
-        //4 Ввести корректный пароль
-        //5 Нажать "Login"
-
-        //ОР: Попадаем на страницу с заголовком "Products"
-
         driver.findElement(By.cssSelector("#user-name")).sendKeys("standard_user");
         driver.findElement(By.cssSelector("#password")).sendKeys("secret_sauce");
         driver.findElement(By.cssSelector("#login-button")).click();
@@ -30,15 +20,6 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void checkLockedOutUserLogin() {
-
-        //1 открыть браузер
-        //2 зайти на сайт
-        //3 Ввести логин от заблокированной УЗ
-        //4 Ввести корректный пароль
-        //5 Нажать "Login"
-
-        //ОР: Аторизации не происходит. Отображается ошибка: "Epic sadface: Sorry, this user has been locked out."
-
         driver.findElement(By.cssSelector("#user-name")).sendKeys("locked_out_user");
         driver.findElement(By.cssSelector("#password")).sendKeys("secret_sauce");
         driver.findElement(By.cssSelector("#login-button")).click();
