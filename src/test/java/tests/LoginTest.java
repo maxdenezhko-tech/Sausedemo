@@ -1,5 +1,6 @@
 package tests;
 
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
@@ -17,43 +18,23 @@ public class LoginTest extends BaseTest {
 
     }
 
-    @Test
-    public void checkEmptyLogin() {
-        loginPage.open();
-        loginPage.login("", "secret_sauce");
-
-        assertTrue(loginPage.isErrorDisplayed());
-        assertEquals(loginPage.getErrorText(), "Epic sadface: Username is required", "Текст ошибки не " +
-                "совпадает с ожидаемым");
+    @DataProvider(name = "incorrectLoginData")
+    public Object[][] loginData() {
+        return new Object[][]{
+                {"", "secret_sauce", "Epic sadface: Username is required"},
+                {"standard_user", "", "Epic sadface: Password is required"},
+                {"Standard_user", "secret_sauce", "Epic sadface: Username and password do not match any user in " +
+                        "this service"},
+                {"locked_out_user", "secret_sauce", "Epic sadface: Sorry, this user has been locked out."}
+        };
     }
 
-    @Test
-    public void checkEmptyPassword() {
+    @Test(dataProvider = "incorrectLoginData")
+    public void checkIncorrectLogin(String user, String password, String errorMessage) {
         loginPage.open();
-        loginPage.login("standard_user", "");
+        loginPage.login(user, password);
 
         assertTrue(loginPage.isErrorDisplayed());
-        assertEquals(loginPage.getErrorText(), "Epic sadface: Password is required", "Текст ошибки не " +
-                "совпадает с ожидаемым");
-    }
-
-    @Test
-    public void checkIncorrectLogin() {
-        loginPage.open();
-        loginPage.login("Standard_user", "secret_sauce");
-
-        assertTrue(loginPage.isErrorDisplayed());
-        assertEquals(loginPage.getErrorText(), "Epic sadface: Username and password do not match any user in " +
-                "this service", "Текст ошибки не совпадает с ожидаемым");
-    }
-
-    @Test
-    public void checkLockedOutUserLogin() {
-        loginPage.open();
-        loginPage.login("locked_out_user", "secret_sauce");
-
-        assertTrue(loginPage.isErrorDisplayed());
-        assertEquals(loginPage.getErrorText(), "Epic sadface: Sorry," +
-                " this user has been locked out.", "Текст ошибки не совпадает с ожидаемым");
+        assertEquals(loginPage.getErrorText(), errorMessage);
     }
 }
