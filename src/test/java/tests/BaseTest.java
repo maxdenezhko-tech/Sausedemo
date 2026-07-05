@@ -1,8 +1,8 @@
 package tests;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.LoginPage;
@@ -17,9 +17,9 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUP() {
-        FirefoxOptions options = new FirefoxOptions();
-        options.addArguments("-private");
-        driver = new FirefoxDriver(options);
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--incognito");
+        driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(7));
         driver.manage().window().maximize();
 

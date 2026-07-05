@@ -18,6 +18,6 @@ public class ProductsTest extends BaseTest {
         productsPage.addGoodsToCart(1);
         assertTrue(productsPage.isCounterDisplayed());
         assertEquals(productsPage.getCounterText(), "2");
-        assertEquals(productsPage.checkCounterValue(), "rgb(226, 35, 26)");
+        assertEquals(productsPage.checkCounterValue(), "rgba(226, 35, 26, 1)");
     }
 }
