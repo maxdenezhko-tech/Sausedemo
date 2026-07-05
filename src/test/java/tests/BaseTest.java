@@ -21,12 +21,10 @@ public class BaseTest {
         options.addArguments("-private");
         driver = new FirefoxDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(7));
-        //driver.manage().window().setSize(new Dimension(360, 760));
         driver.manage().window().maximize();
 
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
-
     }
 
     @AfterMethod
