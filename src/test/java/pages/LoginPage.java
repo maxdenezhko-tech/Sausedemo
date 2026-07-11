@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage {
     private final By loginInput = By.cssSelector("#user-name");
@@ -28,6 +29,7 @@ public class LoginPage extends BasePage {
     }
 
     public String getErrorText() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(errorField));
         return driver.findElement(errorField).getText();
     }
 }
