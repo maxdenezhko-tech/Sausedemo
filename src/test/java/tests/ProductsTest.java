@@ -4,8 +4,10 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+import static enums.TitleNaming.PRODUCTS;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+import static user.UserFactory.withAdminPermission;
 
 public class ProductsTest extends BaseTest {
     @Test
@@ -17,9 +19,9 @@ public class ProductsTest extends BaseTest {
                         "Sauce Labs Fleece Jacket",
                         "Test.allTheThings() T-Shirt (Red)");
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(withAdminPermission());
 
-        assertEquals(productsPage.getTitle(), "Products",
+        assertEquals(productsPage.getTitle(), PRODUCTS.getDisplayName(),
                 "Заголовок страницы каталога не соответствует заданному");
 
         productsPage.addGoodsToCart(1);

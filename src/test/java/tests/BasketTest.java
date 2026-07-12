@@ -4,8 +4,10 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+import static enums.TitleNaming.BASKET;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+import static user.UserFactory.withAdminPermission;
 
 public class BasketTest extends BaseTest {
 
@@ -17,14 +19,14 @@ public class BasketTest extends BaseTest {
                         "Sauce Labs Backpack",
                         "Sauce Labs Bolt T-Shirt");
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(withAdminPermission());
 
         for (String goods : goodsList) {
             productsPage.addGoodsToCart(goods);
         }
-        productsPage.switchToBasket();
+        productsPage.navigationPanel.switchToBasket();
 
-        assertEquals(basketPage.getTitle(), "Your Cart",
+        assertEquals(basketPage.getTitle(), BASKET.getDisplayName(),
                 "Заголовок страницы каталога не соответствует заданному");
 
         assertTrue(basketPage.getProductNames().equals(goodsList));

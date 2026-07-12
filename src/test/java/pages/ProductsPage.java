@@ -40,8 +40,4 @@ public class ProductsPage extends BasePage {
     public String checkCounterColor() {
          return driver.findElement(counter).getCssValue("background-color");
     }
-
-    public void switchToBasket() {
-        driver.findElement(counter).click();
-    }
 }
