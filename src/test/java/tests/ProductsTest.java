@@ -10,7 +10,7 @@ import static org.testng.Assert.assertTrue;
 import static user.UserFactory.withAdminPermission;
 
 public class ProductsTest extends BaseTest {
-    @Test
+    @Test(description = "Добавление товаров в корзину")
     public void checkGoodsAddded() {
         System.out.println("ProductTest.checkGoodsAdded is running in Thread" + Thread.currentThread().getId());
         List<String> goodsList =

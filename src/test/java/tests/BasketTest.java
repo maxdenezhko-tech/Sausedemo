@@ -11,7 +11,7 @@ import static user.UserFactory.withAdminPermission;
 
 public class BasketTest extends BaseTest {
 
-    @Test
+    @Test(description = "Проверка наличия товара в корзине", priority = 1)
     public void checkGoodsAdddedToBasket() {
         System.out.println("BasketTest.checkGoodsAddedToBasket is running in Thread" + Thread.currentThread().getId());
         List<String> goodsList =
