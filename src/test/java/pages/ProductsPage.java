@@ -37,7 +37,7 @@ public class ProductsPage extends BasePage {
         return driver.findElement(counter).getText();
     }
 
-    public String checkCounterValue() {
+    public String checkCounterColor() {
          return driver.findElement(counter).getCssValue("background-color");
     }
 }

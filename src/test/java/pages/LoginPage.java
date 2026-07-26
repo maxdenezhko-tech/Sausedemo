@@ -2,6 +2,8 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import user.User;
 
 public class LoginPage extends BasePage {
     private final By loginInput = By.cssSelector("#user-name");
@@ -13,14 +15,23 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    public void open() {
+    public LoginPage open() {
         driver.get(BASE_URL);
+        return this;
     }
 
-    public void login(String login, String password) {
-        driver.findElement(loginInput).sendKeys(login);
-        driver.findElement(passwordInput).sendKeys(password);
+    public void login(User user) {
+        fillInLoginField(user.getName());
+        fillInPasswordField(user.getPassword());
         driver.findElement(submitButton).click();
+    }
+
+    public void fillInLoginField (String login) {
+        driver.findElement(loginInput).sendKeys(login );
+    }
+
+    public void fillInPasswordField (String password) {
+        driver.findElement(passwordInput).sendKeys(password);
     }
 
     public boolean isErrorDisplayed() {
@@ -28,6 +39,7 @@ public class LoginPage extends BasePage {
     }
 
     public String getErrorText() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(errorField));
         return driver.findElement(errorField).getText();
     }
 }

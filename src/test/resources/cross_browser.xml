@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="2" name="Sausedemo" parallel="classes">
+
+    <test name="Chrome">
+        <classes>
+            <class name="tests.LoginTest"/>
+            <parameter name="browser" value="chrome"></parameter>
+        </classes>
+    </test> <!-- Test -->
+
+    <test name="MicrosoftEdge">
+        <classes>
+            <class name="tests.ProductsTest"/>
+            <class name="tests.BasketTest"/>
+            <parameter name="browser" value="microsoftedge"></parameter>
+        </classes>
+    </test>
+    <!-- Test -->
+</suite>
