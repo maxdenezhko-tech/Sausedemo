@@ -15,5 +15,4 @@ public class NavigationPanel {
     public void switchToBasket() {
         driver.findElement(cartLink).click();
     }
-
 }
