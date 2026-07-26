@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import user.User;
@@ -9,9 +10,16 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import static user.UserFactory.*;
 
+@Epic("Блок онлайн оплаты")
+@Feature("Оплата банковской картой")
+@Owner("Denezhko Maksim Aleksandrovich maxdenezhko@gmail.com")
 public class LoginTest extends BaseTest {
 
-    @Test
+    @Story("Ввод персональных данных")
+    @Severity(SeverityLevel.BLOCKER)
+    @TmsLink("Sausedemo")
+    @Issue("Sausedemo/pulls")
+    @Test(description = "Проверка корректной авторизации", priority = 1)
     public void checkCorrectLogin() {
         System.out.println("LoginTest.checkCorrectLogin is running in Thraed" + Thread.currentThread().getId());
         loginPage
@@ -34,7 +42,11 @@ public class LoginTest extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "incorrectLoginData", enabled = true, invocationCount = 1)
+    @Story("Ввод персональных данных")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink("Sausedemo")
+    @Test(description = "Проверка некорректной авторизации", dataProvider = "incorrectLoginData", enabled = true,
+            invocationCount = 1, priority = 2)
     public void checkIncorrectLogin(User user, String errorMessage) {
         System.out.println("LoginTest.checkIncorrectLogin is running in Thread" + Thread.currentThread().getId());
         loginPage.open();

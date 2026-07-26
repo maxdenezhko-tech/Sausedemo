@@ -1,5 +1,10 @@
 package enums;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@AllArgsConstructor
+@Getter
 public enum TitleNaming {
     PRODUCTS("Products"),
     BASKET("Your Cart"),
@@ -7,11 +12,4 @@ public enum TitleNaming {
 
     private final String displayName;
 
-    TitleNaming(String displayName) {
-        this.displayName = displayName;
-    }
-
-    public String getDisplayName() {
-        return displayName;
-    }
 }
